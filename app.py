@@ -58,6 +58,13 @@ def setup_logging():
 
 setup_logging()
 
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({
+        "status": "healthy"
+    }), 200
+
+
 @app.route("/", methods=["GET"])
 def home():
     app.logger.info("Home page accessed")
@@ -186,4 +193,9 @@ def hackrx_run():
 
 if __name__ == '__main__':
     app.logger.info("Starting HackRX Document QA API")
-    app.run(host="0.0.0.0", port=8000)
+    PORT = int(os.getenv("PORT", "8000"))
+
+    app.run(
+        host="0.0.0.0",
+        port=PORT
+    )

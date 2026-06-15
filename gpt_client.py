@@ -6,7 +6,7 @@ import re
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
-    raise EnvironmentError("Missing GEMINI_API_KEY in .env")
+    print("WARNING: GEMINI_API_KEY not configured")
 genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
